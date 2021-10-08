@@ -12,8 +12,4 @@ class WeatherViewModel: ViewModel() {
     init {
         weatherList = wdaor.getWeatherList()
     }
-
-    fun uploadWeather(lat : Double, lon: Double, exclude: String, appid: String) {
-        wdaor.getWeather(lat, lon, exclude, appid)
-    }
 }

@@ -11,5 +11,4 @@ interface WeatherDaoInterface {
                        @Query("lon") lon: Double,
                        @Query("exclude") exclude: String,
                        @Query("appid") appid: String) : Call<WeatherEntitiy>
-
 }
