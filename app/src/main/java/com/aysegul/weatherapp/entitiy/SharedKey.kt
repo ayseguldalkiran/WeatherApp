@@ -7,5 +7,5 @@ import java.io.Serializable
 class SharedKey(
     @SerializedName("sharedKey")
     @Expose
-    var sharedKey: Double): Serializable {
+    var sharedKey: String): Serializable {
 }

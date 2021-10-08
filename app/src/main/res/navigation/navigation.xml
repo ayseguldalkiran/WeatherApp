@@ -18,5 +18,9 @@
         android:id="@+id/weatherFragment"
         android:name="com.aysegul.weatherapp.fragment.WeatherFragment"
         android:label="fragment_weather"
-        tools:layout="@layout/fragment_weather" />
+        tools:layout="@layout/fragment_weather" >
+        <argument
+            android:name="sharedKey"
+            app:argType="string" />
+    </fragment>
 </navigation>
