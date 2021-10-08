@@ -24,6 +24,10 @@ class WeatherDaoRepository {
         return weatherList
     }
 
+    fun weatherInfoTest(): WeatherEntitiy? {
+        return weatherList.value
+    }
+
     fun getWeatherInfo(latitude: Double, longitude: Double, appId: String) {
         wdaoi.getWeatherInfo(
             latitude,
