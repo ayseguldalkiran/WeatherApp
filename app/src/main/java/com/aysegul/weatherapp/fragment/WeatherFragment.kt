@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -16,6 +17,7 @@ import com.aysegul.weatherapp.retrofit.ApiUtils
 import com.aysegul.weatherapp.retrofit.WeatherDaoInterface
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,6 +35,13 @@ class WeatherFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentWeatherBinding.inflate(inflater, container, false)
+
+/*
+        val bundle: WeatherFragmentArgs by navArgs()
+        val incomingObject = bundle.sharedKey
+
+ */
+
         pdaoi = ApiUtils.getWeatherDaoInterface()
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity)
 
@@ -51,6 +60,7 @@ class WeatherFragment : Fragment() {
                 android.Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
+            Toast.makeText(context, "Lütfen konum iznini veriniz.", Toast.LENGTH_SHORT).show()
             return
         }
         task.addOnSuccessListener {
@@ -71,26 +81,23 @@ class WeatherFragment : Fragment() {
         val sdf = SimpleDateFormat("EEEE")
         val date = SimpleDateFormat("dd-MM-yyyy").parse(a)
 
-        val dayOfTheWeek: String =  sdf.format(date)
+        val dayOfTheWeek: String = sdf.format(date)
 
         return dayOfTheWeek
     }
 
 
     fun getLocation(latitude: Double, longitude: Double) {
-        /*
-        var b = Bundle()
-        var c = b.getString("sharedKey")
-        val bundle : WeatherFragmentArgs by navArgs()
-        val incomingObject = bundle.apiKey
+        val bundle: WeatherFragmentArgs by navArgs()
+        val incomingObject = bundle.sharedKey
 
-         */
+         Log.e("key", incomingObject)
 
         pdaoi.getWeatherInfo(
             latitude,
             longitude,
             "minutely,hourly",
-           " c.toString()"
+          incomingObject
         ).enqueue(
             object : Callback<WeatherEntitiy> {
                 override fun onResponse(
@@ -99,14 +106,21 @@ class WeatherFragment : Fragment() {
                 ) {
                     val weather = response.body()
 
-
-                    binding.textView.text = weather.lat.toString()
+                    binding.textView.text = weather.timezone
+                    binding.textView2.text = weather.current.temp.toString()
                     binding.textView3.text = findDayOfTheWeek(weather.daily[0].dt)
                     binding.textView4.text = findDayOfTheWeek(weather.daily[1].dt)
                     binding.textView5.text = findDayOfTheWeek(weather.daily[2].dt)
                     binding.textView6.text = findDayOfTheWeek(weather.daily[3].dt)
-                    binding.textView7.text = findDayOfTheWeek(weather.daily[4].dt)
-                    binding.textView8.text = findDayOfTheWeek(weather.daily[5].dt)
+
+
+                    Picasso.get().load("http://openweathermap.org/img/wn/" + weather.daily[0].weather[0].icon + "@4x.png").into(binding.imageView4)
+                    Picasso.get().load("http://openweathermap.org/img/wn/" + weather.daily[1].weather[0].icon + "@4x.png").into(binding.imageView5)
+                    Picasso.get().load("http://openweathermap.org/img/wn/" + weather.daily[2].weather[0].icon + "@4x.png").into(binding.imageView6)
+                    Picasso.get().load("http://openweathermap.org/img/wn/" + weather.daily[3].weather[0].icon + "@4x.png").into(binding.imageView7)
+                    Picasso.get().load("http://openweathermap.org/img/wn/" + weather.daily[4].weather[0].icon + "@4x.png").into(binding.imageView8)
+                    Picasso.get().load("http://openweathermap.org/img/wn/" + weather.daily[5].weather[0].icon + "@4x.png").into(binding.imageView9)
+                    Picasso.get().load("http://openweathermap.org/img/wn/" + weather.daily[6].weather[0].icon + "@4x.png").into(binding.imageView10)
 
 
 
