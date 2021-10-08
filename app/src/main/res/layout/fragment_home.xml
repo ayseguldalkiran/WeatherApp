@@ -15,10 +15,12 @@
         app:srcCompat="@drawable/weather" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextApiKey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:inputType="textPersonName"
         android:text="Name" />
 

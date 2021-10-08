@@ -35,13 +35,6 @@ class WeatherFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentWeatherBinding.inflate(inflater, container, false)
-
-/*
-        val bundle: WeatherFragmentArgs by navArgs()
-        val incomingObject = bundle.sharedKey
-
- */
-
         pdaoi = ApiUtils.getWeatherDaoInterface()
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity)
 
@@ -65,7 +58,7 @@ class WeatherFragment : Fragment() {
         }
         task.addOnSuccessListener {
             if(it != null) {
-                getLocation(it.latitude, it.longitude)
+                getWeatherInfo(it.latitude, it.longitude)
             }
         }
     }
@@ -87,11 +80,9 @@ class WeatherFragment : Fragment() {
     }
 
 
-    fun getLocation(latitude: Double, longitude: Double) {
+    fun getWeatherInfo(latitude: Double, longitude: Double) {
         val bundle: WeatherFragmentArgs by navArgs()
         val incomingObject = bundle.sharedKey
-
-         Log.e("key", incomingObject)
 
         pdaoi.getWeatherInfo(
             latitude,
