@@ -12,17 +12,18 @@
         android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginBottom="24dp"
         app:srcCompat="@drawable/weather" />
 
     <EditText
         android:id="@+id/editTextApiKey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:inputType="textPersonName"
-        android:hint="Enter the API key" />
+        android:ems="10"
+        android:hint="Enter the API key"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/button"

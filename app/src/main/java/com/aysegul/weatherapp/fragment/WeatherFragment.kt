@@ -16,7 +16,6 @@ import com.aysegul.weatherapp.viewModel.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.squareup.picasso.Picasso
-import java.lang.Exception
 import java.text.SimpleDateFormat
 
 class WeatherFragment : Fragment() {
@@ -45,6 +44,34 @@ class WeatherFragment : Fragment() {
                 binding.textView4.text = findDayOfTheWeek(weather.daily[1].dt)
                 binding.textView5.text = findDayOfTheWeek(weather.daily[2].dt)
                 binding.textView6.text = findDayOfTheWeek(weather.daily[3].dt)
+                binding.textView7.text = findDayOfTheWeek(weather.daily[4].dt)
+                binding.textView8.text = findDayOfTheWeek(weather.daily[5].dt)
+                binding.textView10.text = findDayOfTheWeek(weather.daily[6].dt)
+
+                binding.textView11.text = weather.daily[0].weather[0].main
+                binding.textView12.text = weather.daily[1].weather[0].main
+                binding.textView13.text = weather.daily[2].weather[0].main
+                binding.textView14.text = weather.daily[3].weather[0].main
+                binding.textView15.text = weather.daily[4].weather[0].main
+                binding.textView16.text = weather.daily[5].weather[0].main
+                binding.textView17.text = weather.daily[6].weather[0].main
+
+                binding.textView18.text = weather.daily[0].temp.min.toString()
+                binding.textView9.text = weather.daily[1].temp.min.toString()
+                binding.textView19.text = weather.daily[2].temp.min.toString()
+                binding.textView20.text = weather.daily[3].temp.min.toString()
+                binding.textView21.text = weather.daily[4].temp.min.toString()
+                binding.textView22.text = weather.daily[5].temp.min.toString()
+                binding.textView23.text = weather.daily[6].temp.min.toString()
+
+                binding.textView24.text = weather.daily[0].temp.max.toString()
+                binding.textView25.text = weather.daily[1].temp.max.toString()
+                binding.textView26.text = weather.daily[2].temp.max.toString()
+                binding.textView27.text = weather.daily[3].temp.max.toString()
+                binding.textView28.text = weather.daily[4].temp.max.toString()
+                binding.textView29.text = weather.daily[5].temp.max.toString()
+                binding.textView30.text = weather.daily[6].temp.max.toString()
+
 
                 Picasso.get().load("http://openweathermap.org/img/wn/" + weather.daily[0].weather[0].icon + "@4x.png").into(binding.imageView4)
                 Picasso.get().load("http://openweathermap.org/img/wn/" + weather.daily[1].weather[0].icon + "@4x.png").into(binding.imageView5)

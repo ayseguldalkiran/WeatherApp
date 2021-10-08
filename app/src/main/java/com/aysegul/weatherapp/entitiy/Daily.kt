@@ -10,5 +10,8 @@ class Daily(
     var dt: Int,
     @SerializedName("weather" )
     @Expose
-    var weather: List<WeatherObject>): Serializable {
+    var weather: List<WeatherObject>,
+    @SerializedName("temp")
+    @Expose
+    var temp: Temp): Serializable {
 }
